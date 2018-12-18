@@ -1,0 +1,9 @@
+{
+  "version": "输出版本号",
+  "directory": "电子书所在的目录 (默认：当前目录)",
+  "formatStart": "要重命名的电子书格式，支持格式：",
+  "formatEnd": "(默认：全部)",
+  "output": "输出目录 (默认：outputBooks)",
+  "modeStart": "输出模式，支持模式：",
+  "modeEnd": "(default: jump)"
+}
