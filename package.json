@@ -5,11 +5,12 @@
   "main": "index.js",
   "dependencies": {
     "commander": "^2.19.0",
-    "get-calibre-tools": "^1.0.0"
+    "fs-extra": "^7.0.1",
+    "get-calibre-tools": "^1.0.0",
+    "os-locale": "^3.0.1"
   },
   "devDependencies": {},
-  "scripts": {
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Calibre-Node/ebook-rename.git"

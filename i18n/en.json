@@ -1,9 +1,0 @@
-{
-  "version": "Output the version number",
-  "directory": "The directory where the e-book is located (default: current directory)",
-  "formatStart": "The e-book format to be renamed, supported formats: ",
-  "formatEnd": "(default: All)",
-  "output": "Output directory (default: outputBooks)",
-  "modeStart": "Output mode, supported mode: ",
-  "modeEnd": "(default: jump)"
-}

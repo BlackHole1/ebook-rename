@@ -1,13 +1,11 @@
+const osLocale = require('os-locale');
 const zh = require('./zh');
 const en = require('./en');
 
-// https://github.com/noob9527/universal-locale/blob/master/index.ts#L17 (Thanks~)
 const getLocale = () => {
-  const env = process.env;
-  const localeStr = env.LC_ALL || env.LC_MESSAGES || env.LANG || env.LANGUAGE || env.LC_CTYPE;
-  const res = localeStr && localeStr.replace(/[.:].*/, '').replace('_', '-').toLowerCase();
+  const res = osLocale.sync().toLowerCase();
   return res
-    ? res === 'zh-cn'
+    ? res === 'zh_cn'
       ? 'zh'
       : 'en'
     : 'en';
