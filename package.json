@@ -1,0 +1,31 @@
+{
+  "name": "ebook-rename",
+  "version": "1.0.0",
+  "description": "Get the metadata of the e-book and rename it",
+  "main": "index.js",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "fs-extra": "^7.0.1",
+    "get-calibre-tools": "^1.0.0",
+    "os-locale": "^3.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Calibre-Node/ebook-rename.git"
+  },
+  "keywords": [
+    "ebook",
+    "e-boook",
+    "rename",
+    "ebook-rename",
+    "e-book-rename"
+  ],
+  "author": "BlackHole <158blackhole@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Calibre-Node/ebook-rename/issues"
+  },
+  "homepage": "https://github.com/Calibre-Node/ebook-rename#readme"
+}
