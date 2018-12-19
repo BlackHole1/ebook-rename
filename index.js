@@ -7,16 +7,12 @@ const { supportedFormats, outputDir } = require('./common');
 const { version } = require('./package');
 
 program
-  .option('-v, --version', i18n.version)
   .option('-d, --directory <path>', i18n.directory, path => checkMethodResult(detectFileOrDir(path)))
   .option('-f, --format <string>', `${i18n.format}`, format => checkMethodResult(detectFormat(format)))
   .option('-o, --output <path>', i18n.output, path => checkMethodResult(createDirectory(path)))
   .option('-m, --mode <string>', `${i18n.mode}`, mode => checkMethodResult(detectMode(mode)))
+  .version(version, '-v, --version')
   .parse(process.argv);
-
-if (!process.argv.slice(2).length) {
-  program.outputHelp();
-}
 
 program.directory = program.directory || (() => {
   checkMethodResult(detectFileOrDir(__dirname));
