@@ -1,10 +1,6 @@
 const { supportedFormats, supportedMode, prefix, outputDir } = require('../common');
 
 class En {
-  get version() {
-    return 'Output the version number';
-  }
-
   get directory() {
     return 'The directory where the e-book is located (default: current directory)';
   }

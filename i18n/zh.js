@@ -1,10 +1,6 @@
 const { supportedFormats, supportedMode, prefix, outputDir } = require('../common');
 
 class Zn {
-  get version() {
-    return '输出版本号';
-  }
-
   get directory() {
     return '电子书所在的目录 (默认：当前目录)';
   }
