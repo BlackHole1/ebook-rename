@@ -1,4 +1,4 @@
-const { supportedFormats, supportedMode, prefix, outputDir } = require('../common');
+const { supportedFormats, supportedMode, prefix, outputDir } = require('../lib/constant');
 
 class Zn {
   get directory() {
