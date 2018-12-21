@@ -7,6 +7,7 @@
     "commander": "^2.19.0",
     "fs-extra": "^7.0.1",
     "get-calibre-tools": "^1.0.0",
+    "iconv-lite": "^0.4.24",
     "os-locale": "^3.0.1",
     "progress": "^2.0.3",
     "sagase": "^1.0.0"
