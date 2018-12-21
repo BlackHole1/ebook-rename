@@ -1,4 +1,4 @@
-const { supportedFormats, supportedMode, prefix, outputDir } = require('../common');
+const { supportedFormats, supportedMode, prefix, outputDir } = require('../lib/constant');
 
 class Zn {
   get directory() {
@@ -35,6 +35,22 @@ class Zn {
 
   modeDoesNotExist(mode) {
     return `${prefix}${mode} 不在支持的列表里`;
+  }
+
+  directoryDoesNotEbook(path, format) {
+    return `${prefix}${path} 路径里不存在以 ${format} 后缀结尾的电子书`;
+  }
+
+  get renaming() {
+    return `正在重命名`
+  }
+
+  get renameComplete() {
+    return `重命名完成`;
+  }
+
+  get renameFail() {
+    return `重命名失败文件：`;
   }
 }
 

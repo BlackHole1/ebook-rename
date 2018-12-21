@@ -1,27 +1,70 @@
+const { exec } = require('child_process');
 const { join } = require('path');
-const program = require('commander');
+const ProgressBar = require('progress');
 const getCalibreTools = require('get-calibre-tools');
+const { find } = require('sagase');
+const { copySync } = require('fs-extra');
 const i18n = require('./i18n');
-const { checkMethodResult, detectFileOrDir, detectFormat, createDirectory, detectMode } = require('./utils');
-const { supportedFormats, outputDir } = require('./common');
-const { version } = require('./package');
+const { directory, output, format, mode } = require('./lib/commander');
+const { detectFileOrDir } = require('./lib/utils');
 
-program
-  .option('-d, --directory <path>', i18n.directory, path => checkMethodResult(detectFileOrDir(path)))
-  .option('-f, --format <string>', `${i18n.format}`, format => checkMethodResult(detectFormat(format)))
-  .option('-o, --output <path>', i18n.output, path => checkMethodResult(createDirectory(path)))
-  .option('-m, --mode <string>', `${i18n.mode}`, mode => checkMethodResult(detectMode(mode)))
-  .version(version, '-v, --version')
-  .parse(process.argv);
+const formatRegex = new RegExp(`^.+\.(${format.join('|')})$`);
 
-program.directory = program.directory || (() => {
-  checkMethodResult(detectFileOrDir(__dirname));
-  return __dirname;
-})();
-program.output = program.output || (() => {
-  const output = join(__dirname, outputDir);
-  checkMethodResult(createDirectory(output));
-  return output;
-})();
-program.format = program.format || Object.keys(supportedFormats);
-program.mode = program.mode || 'jump';
+const findEbooks = ebookMeta => {
+  find({
+    folder: directory,
+    pattern: formatRegex,
+    nameOnly: false,
+    exclude: /(node_modules\/)/,
+    excludeNameOnly: false,
+    recursive: true
+  })
+    .then(async files => {
+      if (files.length === 0) {
+        return Promise.reject(i18n.directoryDoesNotEbook(directory, format.join(', ')));
+      }
+
+      const bar = new ProgressBar(`${i18n.renaming} :bar`, {
+        total: files.length,
+        complete: '█',
+        incomplete: '░'
+      });
+
+      let len = files.length;
+      while(len--) {
+        const filePath = files[len];
+        const fileSuffix = filePath.split('.').pop();
+
+        exec(`"${ebookMeta}" "${filePath}"`, { encoding: 'utf8' }, (err, stdout) => {
+          if (err) {
+            console.log(`${i18n.renameFail} ${filePath}`);
+          }
+
+          const bookName = /^Title.*:(.*)$/m.exec(stdout.toString())[1].replace(/[/\\;"':*<>?|]/, '').trim();
+          try {
+            if (mode === 'cover') {
+              copySync(filePath, join(output, `${bookName}.${fileSuffix}`));
+            } else {
+              if (typeof detectFileOrDir(join(output, `${bookName}.${fileSuffix}`)) !== 'string') {
+                copySync(filePath, join(output, `${bookName}.${fileSuffix}`));
+              }
+            }
+            bar.tick();
+          } catch (e) {
+            console.log(`${i18n.renameFail} ${filePath}`);
+          }
+        });
+      }
+    })
+    .catch(e => {
+      console.log(e)
+    });
+};
+
+getCalibreTools('ebook-meta')
+  .then(path => {
+    findEbooks(path);
+  })
+  .catch(e => {
+    console.log(e);
+  });

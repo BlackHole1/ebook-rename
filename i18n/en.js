@@ -1,4 +1,4 @@
-const { supportedFormats, supportedMode, prefix, outputDir } = require('../common');
+const { supportedFormats, supportedMode, prefix, outputDir } = require('../lib/constant');
 
 class En {
   get directory() {
@@ -35,6 +35,22 @@ class En {
 
   modeDoesNotExist(mode) {
     return `${prefix}${mode} is not in the supported list`;
+  }
+
+  directoryDoesNotEbook(path, format) {
+    return `${prefix}There is no eBook ending with the ${format} suffix in the ${path} path`;
+  }
+
+  get renaming() {
+    return `Renaming`
+  }
+
+  get renameComplete() {
+    return `Rename complete`;
+  }
+
+  get renameFail() {
+    return `Rename fail file:`;
   }
 }
 
