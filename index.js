@@ -4,10 +4,14 @@ const ProgressBar = require('progress');
 const getCalibreTools = require('get-calibre-tools');
 const { find } = require('sagase');
 const { copySync } = require('fs-extra');
+const iconv = require('iconv-lite');
 const i18n = require('./i18n');
 const { directory, output, format, mode } = require('./lib/commander');
 const { detectFileOrDir } = require('./lib/utils');
 
+const encoding = process.platform === 'win32' ? 'cp936' : 'utf8';
+const encodeOutput  = (data, encode = encoding) => iconv.decode(data, encode).toString();
+const titleRegex = (output) => /^Title.*:(.*)$/m.exec(output)[1].replace(/[/\\;"':*<>?|]/, '').trim();
 const formatRegex = new RegExp(`^.+\.(${format.join('|')})$`);
 
 const findEbooks = ebookMeta => {
@@ -35,12 +39,16 @@ const findEbooks = ebookMeta => {
         const filePath = files[len];
         const fileSuffix = filePath.split('.').pop();
 
-        exec(`"${ebookMeta}" "${filePath}"`, { encoding: 'utf8' }, (err, stdout) => {
+        exec(`"${ebookMeta}" "${filePath}"`, { encoding: 'buffer' }, (err, stdout) => {
           if (err) {
             console.log(`${i18n.renameFail} ${filePath}`);
           }
 
-          const bookName = /^Title.*:(.*)$/m.exec(stdout.toString())[1].replace(/[/\\;"':*<>?|]/, '').trim();
+          let bookName = titleRegex(encodeOutput(stdout));
+          if (/�/.exec(bookName) !== null) {
+            bookName = titleRegex(encodeOutput(stdout, 'utf8'));
+          }
+
           try {
             if (mode === 'cover') {
               copySync(filePath, join(output, `${bookName}.${fileSuffix}`));
