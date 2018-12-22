@@ -1,6 +1,6 @@
 {
   "name": "ebook-rename",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get the metadata of the e-book and rename it",
   "main": "index.js",
   "bin": {
