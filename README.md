@@ -4,6 +4,8 @@
 
 If you use this project, you can click star to support it.
 
+[中文文档](https://github.com/Calibre-Node/ebook-rename/blob/master/README-zh.md)
+
 > Use ebook-meta to retrieve data from eBooks and rename them
 
 **Before using, please ensure that the computer has calibre software installed**
@@ -74,3 +76,12 @@ $ ebook-rename -f mobi,azw3,epub
 The default support format is: azw, azw1, azw3, azw4, cbr, cbz, chm, docx, epub, fb2, fbz, html, htmlz, imp, lit, lrf, lrx, mobi, odt, oebzip, opf, pdb, pdf, pml, pmlz, pobi, prc, rar, rb, rtf, snb, tpz, txt, txtz, updb, zip
 
 If you want to specify more than one, you can use a comma to split
+
+## Author
+
+**Black-Hole**
+
+* Github: https://github.com/BlackHole1
+* Blog: http://bugs.cc
+* WeiBo：http://weibo.com/comelove
+* Twitter：https://twitter.com/Free_BlackHole
