@@ -77,3 +77,13 @@ $ ebook-rename -f mobi,azw3,epub
 默认支持格式为：azw, azw1, azw3, azw4, cbr, cbz, chm, docx, epub, fb2, fbz, html, htmlz, imp, lit, lrf, lrx, mobi, odt, oebzip, opf, pdb, pdf, pml, pmlz, pobi, prc, rar, rb, rtf, snb, tpz, txt, txtz, updb, zip
 
 如果要指定多个，可以使用逗号进行分割
+
+## 作者
+
+**Black-Hole**
+
+* Github: https://github.com/BlackHole1
+* Blog: http://bugs.cc
+* WeiBo：http://weibo.com/comelove
+* Twitter：https://twitter.com/Free_BlackHole
+
