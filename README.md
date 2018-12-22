@@ -4,6 +4,8 @@
 
 If you use this project, you can click star to support it.
 
+[中文文档](https://github.com/Calibre-Node/ebook-rename/blob/master/README-zh.md)
+
 > Use ebook-meta to retrieve data from eBooks and rename them
 
 **Before using, please ensure that the computer has calibre software installed**

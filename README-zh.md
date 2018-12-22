@@ -4,6 +4,8 @@
 
 如果你使用到了这个项目，可以点击star支持一下。
 
+[English document](https://github.com/Calibre-Node/ebook-rename/blob/master/README.md)
+
 > 利用ebook-meta来获取电子书的数据，进行重命名
 
 **使用前，请保证电脑安装了calibre软件**
